@@ -32,9 +32,7 @@ RUN sudo pip -qq install    pyflakes \
 RUN sudo pip -qq install     soappy \
     sphinx \
     twisted-dev-tools \
-    twistedchecker \
-    wxPython
-
+    twistedchecker
 
 ENV CFLAGS -Qunused-arguments
 ENV CPPFLAGS -Qunused-arguments
