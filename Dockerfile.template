@@ -21,13 +21,15 @@ RUN pip -qq install \
     gmpy \
     pam \
     pyasn1 \
-    pydoctor \
-    pyflakes \
+    pydoctor
+
+RUN pip -qq install    pyflakes \
     pyopenssl \
     pyserial \
     python-subunit \
-    service_identity \
-    soappy \
+    service_identity
+
+RUN pip -qq install     soappy \
     sphinx \
     twisted-dev-tools \
     twistedchecker \
