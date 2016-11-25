@@ -15,7 +15,7 @@ RUN apt-get -qqy install \
     python-pip \
     python-wxgtk2.8
 
-RUN pip -qq install \
+RUN sudo pip -qq install \
     PyCrypto \
     Twisted \
     gmpy \
@@ -23,7 +23,7 @@ RUN pip -qq install \
     pyasn1 \
     pydoctor
 
-RUN pip -qq install    pyflakes \
+RUN sudo pip -qq install    pyflakes \
     pyopenssl \
     pyserial \
     python-subunit \
