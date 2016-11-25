@@ -2,25 +2,43 @@
 # see more about dockerfile templates here:http://docs.resin.io/pages/deployment/docker-templates
 FROM resin/%%RESIN_MACHINE_NAME%%-python
 
-# use apt-get if you need to install dependencies,
-# for instance if you need ALSA sound utils, just uncomment the lines below.
-# RUN apt-get update && apt-get install -yq \
-#    alsa-utils libasound2-dev && \
-#    apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get -qqy update
+RUN apt-get -qqy upgrade
 
-# Set our working directory
-WORKDIR /usr/src/app
+RUN apt-get -qqy install \
+    libgmp-dev \
+    libffi-dev \
+    Libssl-dev \
+    python \
+    python-dev \
+    python-gtk2 \
+    python-pip \
+    python-wxgtk2.8
 
-# Copy requirements.txt first for better cache on later pushes
-COPY ./requirements.txt /requirements.txt
+RUN pip -qq install \
+    PyCrypto \
+    Twisted \
+    gmpy \
+    pam \
+    pyasn1 \
+    pydoctor \
+    pyflakes \
+    pyopenssl \
+    pyserial \
+    python-subunit \
+    service_identity \
+    soappy \
+    sphinx \
+    twisted-dev-tools \
+    twistedchecker \
+    wxPython
 
-# pip install python deps from requirements.txt on the resin.io build server
-RUN pip install -r /requirements.txt
+
 ENV CFLAGS -Qunused-arguments
 ENV CPPFLAGS -Qunused-arguments
 RUN pip install scrapyd
 # This will copy all files in our root to the working  directory in the container
-COPY . ./
+# COPY . ./
 
 # switch on systemd init system in container
 ENV INITSYSTEM on
